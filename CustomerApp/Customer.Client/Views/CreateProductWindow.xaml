@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Mahsulot Qo'shish" Height="450" Width="600" Background="LightBlue">
     <Window.Resources>
-        <!-- Umumiy Button Style -->
         <Style TargetType="Button">
             <Setter Property="Background" Value="LightSeaGreen"/>
             <Setter Property="Foreground" Value="White"/>
@@ -21,12 +20,10 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <!-- Hover effekti qo'shish -->
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="MediumSeaGreen"/>
                     <Setter Property="BorderBrush" Value="SeaGreen"/>
                 </Trigger>
-                <!-- Tugmani bosish effekti -->
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" Value="DarkSeaGreen"/>
                 </Trigger>
@@ -35,7 +32,6 @@
     </Window.Resources>
 
     <Grid Margin="51,10,29,10">
-        <!-- Ustun va qatorlarni belgilash -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -51,32 +47,25 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Category tanlash uchun ComboBox -->
         <TextBlock Text="Kategoriya:" Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <ComboBox Name="cbCategories" Grid.Column="1" Margin="35,0,35,0" VerticalAlignment="Center" SelectionChanged="cbCategories_SelectionChanged"/>
 
-        <!-- Product Name -->
         <TextBlock Text="Nomi:" Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <TextBox Name="tbName" Grid.Row="1" Grid.Column="1" Margin="10" Width="300" VerticalAlignment="Center"/>
 
-        <!-- Product Description -->
         <TextBlock Text="Tavsifi:" Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <TextBox Name="tbDescription" Grid.Row="2" Grid.Column="1" Margin="10" Width="300" VerticalAlignment="Center"/>
 
-        <!-- Price -->
         <TextBlock Text="Narxi:" Grid.Row="3" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <TextBox Name="tbPrice" Grid.Row="3" Grid.Column="1" Margin="10" Width="300" VerticalAlignment="Center"/>
 
-        <!-- Quantity -->
         <TextBlock Text="Miqdori:" Grid.Row="4" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <TextBox Name="tbQuantity" Grid.Row="4" Grid.Column="1" Margin="10" Width="300" VerticalAlignment="Center"/>
 
-        <!-- Rasm yuklash uchun button -->
         <TextBlock Text="Rasm:" Grid.Row="5" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <Button Content="Rasm yuklash" Grid.Row="5" Margin="140,48,0,0" Width="150" Click="UploadImageButton_Click" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="30" RenderTransformOrigin="0.489,0.543"/>
         <Image Name="imgPreview" Grid.Row="5" Grid.Column="1" Margin="201,10,40,10" Height="100" />
 
-        <!-- Saqlash tugmasi -->
         <Button Content="Mahsulotni Qo'shish" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" 
                 Width="200" Height="30" Margin="10" VerticalAlignment="Center" 
                 HorizontalAlignment="Center" Click="SaveProductButton_Click"/>

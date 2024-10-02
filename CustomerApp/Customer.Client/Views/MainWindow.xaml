@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Menu" Height="446" Width="621">
-    <!-- Window Resurslari: Button uslubi va boshqa resurslar -->
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background">
@@ -67,12 +66,10 @@
 
     </Window.Resources>
 
-    <!-- Sahifa tuzilishi -->
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="pack://application:,,,/Assets/background.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <!-- Katta tugma joylashuvi -->
         <Button Name="btnProductList" 
                 Content="Market"
                 VerticalAlignment="Top" 

@@ -3,20 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Savatcha" Height="459" Width="600" Background="LightBlue">
     <Grid>
-        <!-- Grid ichida satr va ustunlarni belgilaymiz -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <!-- Mahsulotlar ro'yxati uchun -->
             <RowDefinition Height="Auto" />
-            <!-- Umumiy narx uchun -->
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <!-- Mahsulotlar ro'yxati va umumiy narx ustuni uchun -->
         </Grid.ColumnDefinitions>
 
-        <!-- Mahsulotlar ro'yxatini ko'rsatish uchun ListView -->
         <ListView Name="lvProducts" Grid.Row="0" Grid.Column="0" Margin="20,22,20,68" SelectionChanged="lvProducts_SelectionChanged">
             <ListView.View>
                 <GridView>
@@ -28,7 +23,6 @@
             </ListView.View>
         </ListView>
 
-        <!-- Umumiy narxni ko'rsatish uchun TextBlock -->
         <TextBlock Name="tbTotalPrice"
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Top" 
