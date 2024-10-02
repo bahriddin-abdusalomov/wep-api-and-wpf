@@ -1,0 +1,46 @@
+﻿<Window x:Class="Customer.Client.Views.ProductListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Customer.Client.Views"
+        mc:Ignorable="d"
+        Title="ProductListWindow" Height="450" Width="800">
+    <Grid>
+        <ComboBox Name="cbCategories" 
+                  HorizontalAlignment="Left"
+                  Margin="10" 
+                  VerticalAlignment="Top" 
+                  Width="150"
+                  SelectionChanged="cbCategories_SelectionChanged"/>
+
+        <DataGrid Name="dgProducts" AutoGenerateColumns="False" 
+                  HorizontalAlignment="Left" 
+                  Margin="10,50,0,0" 
+                  VerticalAlignment="Top"
+                  Height="357" Width="767"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" Width="50"/>
+                <DataGridTextColumn Header="Nomi" Binding="{Binding Name}" Width="200"/>
+                <DataGridTextColumn Header="Narxi" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Miqdori" Binding="{Binding Quantity}" Width="100"/>
+
+                <DataGridTemplateColumn Header="Action" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="View" Click="ViewButton_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Action" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Remove" Click="RemoveButton_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

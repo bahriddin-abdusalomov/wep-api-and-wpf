@@ -10,5 +10,4 @@ namespace Customer.Client
     public partial class App : Application
     {
     }
-
 }

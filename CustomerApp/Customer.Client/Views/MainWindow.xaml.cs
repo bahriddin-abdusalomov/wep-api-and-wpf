@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Customer.Client
+namespace Customer.Client.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,6 +19,11 @@ namespace Customer.Client
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void btnProductList_Click(object sender, RoutedEventArgs e)
+        {
+            var productListWindow = new ProductListWindow();
+            productListWindow.Show();
         }
     }
 }
