@@ -21,7 +21,7 @@ namespace Customer.Service.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> CreateProduct([FromForm] ProductDTO productDto)
+        public async Task<ActionResult<bool>> CreateProduct(ProductDTO productDto)
         {
             if (productDto == null)
             {

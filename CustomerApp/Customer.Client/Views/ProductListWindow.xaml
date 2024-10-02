@@ -5,38 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Customer.Client.Views"
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="450" Width="800">
-    <Grid>
+        Title="ProductListWindow" Height="450" Width="698" Background="LightBlue">
+
+    <Grid Height="434" VerticalAlignment="Top">
         <ComboBox Name="cbCategories" 
                   HorizontalAlignment="Left"
-                  Margin="10" 
+                  Margin="33,10,0,0" 
                   VerticalAlignment="Top" 
-                  Width="150"
+                  Width="162"
                   SelectionChanged="cbCategories_SelectionChanged"/>
 
-        <DataGrid Name="dgProducts" AutoGenerateColumns="False" 
-                  HorizontalAlignment="Left" 
-                  Margin="10,50,0,0" 
-                  VerticalAlignment="Top"
-                  Height="357" Width="767"
-                  CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" Width="50"/>
-                <DataGridTextColumn Header="Nomi" Binding="{Binding Name}" Width="200"/>
-                <DataGridTextColumn Header="Narxi" Binding="{Binding Price}" Width="100"/>
-                <DataGridTextColumn Header="Miqdori" Binding="{Binding Quantity}" Width="100"/>
+        <Button Content="Create" 
+                Width="100" 
+                Height="22" 
+                HorizontalAlignment="Left" 
+                Margin="210,10,0,0" 
+                VerticalAlignment="Top" 
+                Click="CreateButton_Click" 
+                Background="Green" 
+                Foreground="White"/>
 
-                <DataGridTemplateColumn Header="Action" Width="100">
+        <DataGrid Name="dgProducts" AutoGenerateColumns="False" 
+                  HorizontalAlignment="Center" 
+                  Margin="0,52,0,0" 
+                  VerticalAlignment="Top"
+                  Height="357" Width="632"
+                  CanUserAddRows="False" 
+                  Background="White"
+                  AlternatingRowBackground="#F0F0F0"
+                  GridLinesVisibility="All" 
+                  SelectionChanged="dgProducts_SelectionChanged"
+                  RowBackground="White"
+                  RowHeaderWidth="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" Width="50" />
+                <DataGridTextColumn Header="Nomi" Binding="{Binding Name}" Width="145" />
+                <DataGridTextColumn Header="Narxi" Binding="{Binding Price}" Width="100" />
+                <DataGridTextColumn Header="Miqdori" Binding="{Binding Quantity}" Width="100" />
+
+                <DataGridTemplateColumn Header="Ko'rish" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="View" Click="ViewButton_Click" />
+                            <Button Content="View" Click="ViewButton_Click" Margin="2" Background="Yellow" Foreground="Black"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Action" Width="100">
+
+                <DataGridTemplateColumn Header="O'chirish" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Remove" Click="RemoveButton_Click" />
+                            <Button Content="Remove" Click="RemoveButton_Click" Margin="2" Background="Red" Foreground="White"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

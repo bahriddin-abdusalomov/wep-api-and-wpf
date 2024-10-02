@@ -25,5 +25,17 @@ namespace Customer.Client.Views
             var productListWindow = new ProductListWindow();
             productListWindow.Show();
         }
+
+        private void btnCart_Click(object sender, RoutedEventArgs e)
+        {
+            var cartWindow = new CartWindow();
+            cartWindow.Show();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
     }
 }

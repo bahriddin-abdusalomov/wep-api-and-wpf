@@ -1,7 +1,9 @@
-﻿using Customer.Client.Models;
+﻿using Customer.Client.Managers;
+using Customer.Client.Models;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,7 @@ namespace Customer.Client.Views
     {
         private Product _product;
         private int _quantity = 1;
+        private List<Product> _products = new List<Product>();
 
         public ProductDetailsWindow(Product product)
         {
@@ -37,11 +40,12 @@ namespace Customer.Client.Views
             tbProductDescription.Text = _product.Description;
             tbProductPrice.Text = $"Narxi: {_product.Price} so'm";
 
-            // Rasm URL manzilidan (server yoki mahalliy) olingan rasmni o'rnatish
             if (!string.IsNullOrEmpty(_product.ImageUrl))
             {
-                var uri = new Uri(_product.ImageUrl, UriKind.RelativeOrAbsolute);
-                imgProduct.Source = new BitmapImage(uri);
+                var baseAddress = "https://localhost:7084"; 
+                var imageUrl = new Uri($"{baseAddress}/{_product.ImageUrl}", UriKind.Absolute);
+
+                imgProduct.Source = new BitmapImage(imageUrl);
             }
         }
 
@@ -60,9 +64,26 @@ namespace Customer.Client.Views
             tbQuantity.Text = _quantity.ToString();
         }
 
-        private void BuyButton_Click(object sender, RoutedEventArgs e)
+        private void CartButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"{_quantity} ta {_product.Name} mahsuloti sotib olindi!", "Sotib olish muvaffaqiyatli!");
+            var product = new Product
+            {
+                ProductId = _product.ProductId,
+                Name = _product.Name,
+                Description = _product.Description,
+                ImageUrl = _product.ImageUrl,
+                Price = _product.Price,
+                Quantity = _quantity,
+                TotalPrice = _product.Price * _quantity,
+                CategoryId = _product.CategoryId
+            };
+
+            CartManager.Instance.AddProduct(product);
+
+            MessageBox.Show("Maxsulot savatga qo'shildi!");
+
+            this.Hide();
         }
+
     }
 }

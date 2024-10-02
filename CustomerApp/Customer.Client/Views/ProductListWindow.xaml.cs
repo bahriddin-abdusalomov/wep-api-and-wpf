@@ -20,9 +20,6 @@ using System.Windows.Shapes;
 
 namespace Customer.Client.Views
 {
-    /// <summary>
-    /// Interaction logic for ProductListWindow.xaml
-    /// </summary>
     public partial class ProductListWindow : Window
     {
         private HttpClient _client;
@@ -115,6 +112,16 @@ namespace Customer.Client.Views
                     MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProductWindow createProductWindow = new CreateProductWindow();
+            createProductWindow.ShowDialog();
+        }
+
+        private void dgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
         }
 
     }

@@ -42,6 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStaticFiles(); // wwwroot katalogidagi static fayllarga kirish imkonini beradi.
 
 app.UseHttpsRedirection();
 
