@@ -37,6 +37,43 @@ namespace Customer.Service.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            Name = "Elektronika"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            Name = "Kitoblar"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            Name = "Kiyimlar"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            Name = "O'yinchoqlar"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            Name = "Sport buyumlari"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            Name = "Mebel"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            Name = "Oshxona buyumlari"
+                        });
                 });
 
             modelBuilder.Entity("Customer.Service.Models.Product", b =>

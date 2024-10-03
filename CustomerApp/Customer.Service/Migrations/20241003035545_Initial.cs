@@ -19,7 +19,7 @@ namespace Customer.Service.Migrations
                 {
                     CategoryId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CategoryName = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,7 +33,10 @@ namespace Customer.Service.Migrations
                     ProductId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    ImageUrl = table.Column<string>(type: "text", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "numeric", nullable: true),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -50,21 +53,16 @@ namespace Customer.Service.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "CategoryName" },
+                columns: new[] { "CategoryId", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Electronics" },
-                    { 2, "Clothing" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "ProductId", "CategoryId", "Name", "Price", "Quantity" },
-                values: new object[,]
-                {
-                    { 1, 1, "Laptop", 1000m, 10 },
-                    { 2, 1, "Smartphone", 700m, 20 },
-                    { 3, 2, "T-shirt", 30m, 50 }
+                    { 1, "Elektronika" },
+                    { 2, "Kitoblar" },
+                    { 3, "Kiyimlar" },
+                    { 4, "O'yinchoqlar" },
+                    { 6, "Sport buyumlari" },
+                    { 7, "Mebel" },
+                    { 8, "Oshxona buyumlari" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -64,7 +64,12 @@
 
         <TextBlock Text="Rasm:" Grid.Row="5" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <Button Content="Rasm yuklash" Grid.Row="5" Margin="140,48,0,0" Width="150" Click="UploadImageButton_Click" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="30" RenderTransformOrigin="0.489,0.543"/>
-        <Image Name="imgPreview" Grid.Row="5" Grid.Column="1" Margin="201,10,40,10" Height="100" />
+
+        <Rectangle Grid.Row="5" Grid.Column="1" Margin="185,10,19,103" Grid.RowSpan="2">
+            <Rectangle.Fill>
+                <ImageBrush x:Name="Image" Stretch="UniformToFill" />
+            </Rectangle.Fill>
+        </Rectangle>
 
         <Button Content="Mahsulotni Qo'shish" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" 
                 Width="200" Height="30" Margin="10" VerticalAlignment="Center" 
