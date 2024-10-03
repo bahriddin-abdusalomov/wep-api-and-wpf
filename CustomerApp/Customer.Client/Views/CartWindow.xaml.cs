@@ -7,10 +7,13 @@ namespace Customer.Client.Views
 {
     public partial class CartWindow : Window
     {
+        private CartManager _cartManager;   
         public CartWindow()
         {
             InitializeComponent();
-            lvProducts.ItemsSource = CartManager.Instance.Products; 
+            _cartManager = CartManager.Instance;
+            _cartManager.GroupProducts();
+            lvProducts.ItemsSource = CartManager.Instance.Products;
             CalculateTotalPrice();
         }
 

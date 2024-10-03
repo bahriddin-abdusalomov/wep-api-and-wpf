@@ -12,6 +12,24 @@ namespace Customer.Client.Managers
 
         private CartManager() { }
 
+        public void GroupProducts()
+        {
+            var groupedProducts = new List<Product>();
+            foreach (var product in Products)
+            {
+                if (groupedProducts.Exists(p => p.ProductId == product.ProductId))
+                {
+                    var existingProduct = groupedProducts.Find(p => p.ProductId == product.ProductId);
+                    existingProduct.Quantity += product.Quantity;
+                }
+                else
+                {
+                    groupedProducts.Add(product);
+                }
+            }
+            Products = groupedProducts;
+        }
+
         public void AddProduct(Product product)
         {
             Products.Add(product);
