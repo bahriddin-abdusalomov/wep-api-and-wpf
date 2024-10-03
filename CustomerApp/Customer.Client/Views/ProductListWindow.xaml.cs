@@ -30,6 +30,7 @@ namespace Customer.Client.Views
         {
             InitializeComponent();
             _client = new HttpClient();
+            ClearProductList();
             LoadCategories();
         }
 
@@ -118,6 +119,26 @@ namespace Customer.Client.Views
             CreateProductWindow createProductWindow = new CreateProductWindow();
             createProductWindow.ShowDialog();
             this.Close();
+        }
+
+        private async void ClearProductList()
+        {
+            try
+            {
+                var response = await _client.GetStringAsync("https://localhost:7084/api/Products");
+                var products = JsonConvert.DeserializeObject<List<Product>>(response);
+                foreach (var product in products)
+                {
+                    if (product.Quantity <= 0)
+                    {
+                        await _client.DeleteAsync($"https://localhost:7084/api/Products/{product.ProductId}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Xato yuz berdi: {ex.Message}");
+            }
         }
 
         private void dgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)

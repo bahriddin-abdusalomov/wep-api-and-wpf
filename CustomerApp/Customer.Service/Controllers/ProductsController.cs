@@ -99,5 +99,18 @@ namespace Customer.Service.Controllers
                 return NotFound("Product not found.");
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Product>>> GetAllProducts()
+        {
+            var products = await _productService.GetAllProductsAsync();
+
+            if (products == null || !products.Any())
+            {
+                return Ok(new List<Product>());
+            }
+
+            return Ok(products);
+        }
     }
 }

@@ -81,6 +81,20 @@ namespace Customer.Service.Services
             }
         }
 
+        public async Task<List<Product>> GetAllProductsAsync()
+        {
+            try
+            {
+                var products = await _dbContext.Products.ToListAsync();
+                return products; 
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error retrieving products: {ex.Message}");
+                return new List<Product>(); 
+            }
+        }
+
         public async Task<Product> GetProductByIdAsync(int productId, int categoryId)
         {
             try
