@@ -1,6 +1,11 @@
-﻿using Customer.Client.Managers;
+﻿using Customer.Client.DTOs;
+using Customer.Client.Managers;
 using Customer.Client.Models;
 
+using Newtonsoft.Json;
+
+using System.Net.Http;
+using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -12,12 +17,14 @@ namespace Customer.Client.Views
     public partial class ProductDetailsWindow : Window
     {
         private Product _product;
+        private HttpClient _client;
         private int _quantity = 1;
         private List<Product> _products = new List<Product>();
 
         public ProductDetailsWindow(Product product)
         {
             InitializeComponent();
+            _client = new HttpClient();
             _product = product;
             LoadProductDetails();
         }
@@ -55,7 +62,7 @@ namespace Customer.Client.Views
             }
         }
 
-        private void CartButton_Click(object sender, RoutedEventArgs e)
+        private async void CartButton_Click(object sender, RoutedEventArgs e)
         {
             var product = new Product
             {
@@ -69,11 +76,26 @@ namespace Customer.Client.Views
                 CategoryId = _product.CategoryId
             };
 
+            var productDto = new ProductDTO
+            {
+                Quantity = _product.Quantity - _quantity,
+            };
+
+            using (var content = new MultipartFormDataContent())
+            {
+                content.Add(new StringContent(productDto.Quantity.ToString()), nameof(ProductDTO.Quantity));
+
+                var request = new HttpRequestMessage(HttpMethod.Put, $"https://localhost:7084/api/Products/{product.ProductId}")
+                {
+                    Content = content
+                };
+                var response = await _client.SendAsync(request);
+            }
+
             CartManager.Instance.AddProduct(product);
 
             MessageBox.Show("Maxsulot savatga qo'shildi!");
             this.Close();
         }
-
     }
 }

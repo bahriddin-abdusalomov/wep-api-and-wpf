@@ -121,5 +121,29 @@ namespace Customer.Service.Services
                 return new List<Product>(); 
             }
         }
+
+        public async Task<bool> UpdateProductAsync(int productId, ProductDTO productDto)
+        {
+            try
+            {
+                var product = await _dbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+                if (product == null)
+                {
+                    _logger.LogWarning($"Product with ID {productId} not found.");
+                    return false; 
+                }
+                product.Quantity = (int)productDto.Quantity;
+
+                _dbContext.Products.Update(product);
+                var result = await _dbContext.SaveChangesAsync();
+
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error updating product with ID {productId}: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

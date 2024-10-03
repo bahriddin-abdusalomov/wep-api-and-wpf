@@ -8,6 +8,7 @@ namespace Customer.Service.Interfaces
         Task<bool> CreateProductAsync(ProductDTO productDto);
         Task<List<Product>> GetProductsByCategoryAsync(int categoryId);
         Task<Product> GetProductByIdAsync(int productId, int categoryId);
+        Task<bool> UpdateProductAsync(int productId, ProductDTO productDto);
         Task<bool> DeleteProductAsync(int productId);
     }
 }

@@ -79,5 +79,25 @@ namespace Customer.Service.Controllers
 
             return Ok(products);
         }
+
+        [HttpPut("{productId}")]
+        public async Task<ActionResult<bool>> UpdateProduct(int productId, ProductDTO productDto)
+        {
+            if (productDto == null)
+            {
+                return BadRequest("Invalid product data.");
+            }
+
+            var result = await _productService.UpdateProductAsync(productId, productDto);
+
+            if (result)
+            {
+                return Ok("Product updated successfully.");
+            }
+            else
+            {
+                return NotFound("Product not found.");
+            }
+        }
     }
 }
