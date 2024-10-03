@@ -1,7 +1,5 @@
 using Customer.Service.Data;
-
 using Microsoft.EntityFrameworkCore;
-
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Customer.Service.Interfaces;

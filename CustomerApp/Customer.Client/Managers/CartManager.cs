@@ -1,5 +1,4 @@
 ﻿using Customer.Client.Models;
-
 using System.Collections.Generic;
 
 namespace Customer.Client.Managers

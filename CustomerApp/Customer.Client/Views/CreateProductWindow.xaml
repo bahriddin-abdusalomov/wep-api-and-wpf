@@ -48,7 +48,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Kategoriya:" Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
-        <ComboBox Name="cbCategories" Grid.Column="1" Margin="35,0,35,0" VerticalAlignment="Center" SelectionChanged="cbCategories_SelectionChanged"/>
+        <ComboBox Name="cbCategories" Grid.Column="1" Margin="31,0,31,0" VerticalAlignment="Center" SelectionChanged="cbCategories_SelectionChanged"/>
 
         <TextBlock Text="Nomi:" Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
         <TextBox Name="tbName" Grid.Row="1" Grid.Column="1" Margin="10" Width="300" VerticalAlignment="Center"/>

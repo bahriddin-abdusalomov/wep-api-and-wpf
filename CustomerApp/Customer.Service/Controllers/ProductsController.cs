@@ -2,7 +2,6 @@
 using Customer.Service.DTOs;
 using Customer.Service.Interfaces;
 using Customer.Service.Models;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -47,11 +46,11 @@ namespace Customer.Service.Controllers
 
             if (result)
             {
-                return Ok($"Product deleted successfully.");
+                return Ok("Product deleted successfully.");
             }
             else
             {
-                return NotFound($"Product not found.");
+                return NotFound("Product not found.");
             }
         }
 
@@ -62,7 +61,7 @@ namespace Customer.Service.Controllers
 
             if (product == null)
             {
-                return NotFound($"Product not found.");
+                return NotFound("Product not found.");
             }
 
             return Ok(product);
@@ -75,7 +74,7 @@ namespace Customer.Service.Controllers
 
             if (products == null || !products.Any())
             {
-                return NotFound($"No products found for category ID {categoryId}.");
+                return Ok(new List<Product>());
             }
 
             return Ok(products);

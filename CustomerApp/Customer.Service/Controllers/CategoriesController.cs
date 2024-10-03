@@ -2,7 +2,6 @@
 using Customer.Service.DTOs;
 using Customer.Service.Interfaces;
 using Customer.Service.Models;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

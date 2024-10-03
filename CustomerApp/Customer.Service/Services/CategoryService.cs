@@ -2,7 +2,6 @@
 using Customer.Service.DTOs;
 using Customer.Service.Interfaces;
 using Customer.Service.Models;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Customer.Service.Services

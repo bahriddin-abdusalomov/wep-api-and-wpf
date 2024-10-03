@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,7 +41,8 @@ namespace Customer.Client.Views
 
             cbCategories.ItemsSource = _categories;
             cbCategories.DisplayMemberPath = "Name"; 
-            cbCategories.SelectedValuePath = "CategoryId"; 
+            cbCategories.SelectedValuePath = "CategoryId";
+            cbCategories.SelectedIndex = 0; 
         }
 
         private async void cbCategories_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -50,9 +52,7 @@ namespace Customer.Client.Views
                 var response = await _client.GetStringAsync($"https://localhost:7084/api/Products/{selectedCategory.CategoryId}");
                 var products = JsonConvert.DeserializeObject<List<Product>>(response);
                 dgProducts.ItemsSource = products;
-
             }
-        
         }
 
         private async void ViewButton_Click(object sender, RoutedEventArgs e)
@@ -65,15 +65,14 @@ namespace Customer.Client.Views
             {
                 try
                 {
-                    // API orqali mahsulotni `ProductId` va `CategoryId` bo'yicha olish
                     var productDetails = await _client.GetStringAsync($"https://localhost:7084/api/Products/{product.ProductId}/{product.CategoryId}");
                     var productView = JsonConvert.DeserializeObject<Product>(productDetails);
 
                     if (productView != null)
                     {
-                        // Yangi sahifa ochish va mahsulot ma'lumotlarini ko'rsatish
                         var productDetailsWindow = new ProductDetailsWindow(productView);
                         productDetailsWindow.Show();
+                        this.Close();
                     }
                     else
                     {
@@ -100,16 +99,16 @@ namespace Customer.Client.Views
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show($"Product with ID {product.ProductId} deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Mahsulot o'chirildi!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        MessageBox.Show($"Failed to delete product. Server response: {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Mahsulotni o'chirishda hatolik bor: {response.ReasonPhrase}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Hatolik: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -118,11 +117,11 @@ namespace Customer.Client.Views
         {
             CreateProductWindow createProductWindow = new CreateProductWindow();
             createProductWindow.ShowDialog();
+            this.Close();
         }
 
         private void dgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
-
     }
 }

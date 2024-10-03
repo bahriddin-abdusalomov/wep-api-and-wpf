@@ -1,20 +1,8 @@
 ﻿using Customer.Client.Managers;
 using Customer.Client.Models;
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Customer.Client.Views
 {
@@ -42,7 +30,7 @@ namespace Customer.Client.Views
 
             if (!string.IsNullOrEmpty(_product.ImageUrl))
             {
-                var baseAddress = "https://localhost:7084"; 
+                var baseAddress = "https://localhost:7084";
                 var imageUrl = new Uri($"{baseAddress}/{_product.ImageUrl}", UriKind.Absolute);
 
                 imgProduct.Source = new BitmapImage(imageUrl);
@@ -60,8 +48,11 @@ namespace Customer.Client.Views
 
         private void IncreaseQuantityButton_Click(object sender, RoutedEventArgs e)
         {
-            _quantity++;
-            tbQuantity.Text = _quantity.ToString();
+            if (_quantity < _product.Quantity)
+            {
+                _quantity++;
+                tbQuantity.Text = _quantity.ToString();
+            }
         }
 
         private void CartButton_Click(object sender, RoutedEventArgs e)
@@ -81,8 +72,7 @@ namespace Customer.Client.Views
             CartManager.Instance.AddProduct(product);
 
             MessageBox.Show("Maxsulot savatga qo'shildi!");
-
-            this.Hide();
+            this.Close();
         }
 
     }
